@@ -1,47 +1,83 @@
-#  TechFlow - Dashboard de Gestão de Projetos (CP5)
+# TechFlow - Dashboard de Gestão de Projetos (CP5)
 
-> **Check Point 5 (CP5)** — Front-End Web Development / Software Engineering
+> Check Point 5 (CP5) — Front-End Web Development / Software Engineering
 
-O **TechFlow** é uma aplicação web interativa de gerenciamento de projetos e equipes desenvolvida com foco em usabilidade, design moderno, responsividade e alta performance. O projeto conta com suporte completo a temas (Claro/Escuro), validações dinâmicas de formulário e manipulação do DOM via JavaScript.
+O **TechFlow** é uma aplicação web interativa de gerenciamento de projetos e equipes desenvolvida com foco em usabilidade, design moderno, responsividade e alta performance. O projeto conta com suporte completo a temas (Claro/Escuro/Sistema), validações dinâmicas de formulário e manipulação do DOM via JavaScript puro.
+
+---
 
 ## 👥 Integrantes do Grupo
 
-* **Nicolly Florencio Vilela** — RM: `573392`
-* **Brenda Chalco Condori** — RM: `571971`
+* **Nicolly Florencio Vilela** — RM: 573392
+* **Brenda Chalco Condori** — RM: 571971
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
-* **HTML5**: Estrutura semântica e acessível.
-* **Tailwind CSS (v4)**: Estilização utilitária, suporte nativo a temas e layout responsivo.
-* **JavaScript (ES6+)**: Lógica da aplicação, manipulação do DOM e tratamento defensivo de erros.
-* **Vite**: Ferramenta de build e servidor de desenvolvimento ultrarrápido.
-* **Google Fonts (Plus Jakarta Sans)**: Tipografia limpa e moderna.
+* **HTML5:** Estruturação semântica e acessível.
+* **Tailwind CSS (v4):** Estilização utilitária, suporte nativo a temas e layout responsivo.
+* **JavaScript (ES6+):** Lógica da aplicação, manipulação do DOM e tratamento defensivo de erros.
+* **Vite:** Ferramenta de build e servidor de desenvolvimento ultrarrápido.
+* **Google Fonts (Plus Jakarta Sans):** Tipografia limpa e moderna.
 
-## ✨ Funcionalidades Principais
+---
 
-* 🌓 **Sistema de Temas Completo (Light / Dark / System)**
+## ✨ Principais Recursos Implementados
+
+* 🌓 **Sistema de Temas Completo (Light / Dark / System):**
   * Alternância dinâmica entre tema Claro, Escuro e Sincronização com o Sistema Operacional.
   * Persistência da preferência do usuário via `localStorage`.
 
-* 📱 **Interface 100% Responsiva**
-  * Sidebar mobile retrátil com fundo desfocado (*backdrop blur*).
-  * Adaptação perfeita para celulares, tablets e desktops.
+* 📱 **Interface 100% Responsiva:**
+  * Sidebar mobile retrátil com efeito *backdrop blur*.
+  * Adaptação contínua para dispositivos móveis, tablets e desktops.
 
-* 🔍 **Filtro e Busca em Tempo Real**
-  * Pesquisa dinâmica que oculta/exibe cartões de projetos conforme o texto digitado.
+* 🔍 **Filtro e Busca em Tempo Real:**
+  * Pesquisa dinâmica que exibe e oculta cartões de projetos instantaneamente conforme o texto digitado.
 
-* ➕ **Gestão de Projetos (Modal & Form)**
+* ➕ **Gestão Dinâmica de Projetos (Modal & Form):**
   * Modal interativo para criação de novos projetos.
-  * Inserção dinâmica dos novos cartões diretamente no topo do painel.
+  * Inserção de novos cartões diretamente no topo do painel principal.
 
-* ✅ **Validação Avançada de Formulários**
-  * Validação em tempo real (nos eventos `blur` e `input`).
+* ✅ **Validação Avançada de Formulários:**
+  * Validação em tempo real (eventos `blur` e `input`).
   * Checagem de tamanho mínimo de texto para Nome e Descrição.
-  * Validação de datas para evitar Prazos no passado.
-  * Verificação de campos obrigatórios (Categoria e Prioridade).
-  * Feedback visual amigável sem bloqueio de execução.
+  * Validação lógica de datas (bloqueando prazos passados).
+  * Verificação de campos obrigatórios (Categoria e Prioridade) com feedback visual defensivo.
 
-## 📁 Estrutura de Pastas e Arquivos
+---
+
+## 📌 Critérios Atendidos (CP5)
+
+* [x] Estruturação semântica em HTML5.
+* [x] Estilização eficiente e sem redundâncias com Tailwind CSS v4.
+* [x] Manipulação do DOM e tratamento seguro com JS puro (ES6+).
+* [x] Lógica de validação defensiva e tratamento de inputs do usuário.
+* [x] Responsividade e temas (Light/Dark mode) persistentes via `localStorage`.
+
+---
+
+## 🔗 Link do Repositório GitHub
+
+* 📂 **GitHub:** [https://github.com/ninixzzs/CP5-techflow-dashboard](https://github.com/ninixzzs/CP5-techflow-dashboard)
+
+---
+
+## ⚠️ Dificuldades Encontradas
+
+1. **Migração e Configuração do Tailwind CSS v4 com Vite:**
+   * A adaptação às diretivas da versão 4 do Tailwind exigiu ajustes finos nas configurações do arquivo `css/styles.css` para garantir o correto funcionamento dos estilos utilitários e variáveis de tema.
+
+2. **Validação de Formulário Defensiva em Tempo Real:**
+   * Lidar com o estado dos campos nos eventos `input` e `blur` exigiu cuidado para fornecer feedback visual amigável sem interromper a navegação do usuário antes do envio.
+
+3. **Gerenciamento de Estado do Tema (Light / Dark / System):**
+   * Sincronizar as preferências salvas no `localStorage` com a preferência do sistema operacional (`prefers-color-scheme`) e evitar flashes de tema ao carregar a página.
+
+---
+
+## 📁 Estrutura do Projeto
 
 ```text
 techflow/
@@ -49,47 +85,6 @@ techflow/
 │   └── styles.css        # Diretivas do Tailwind v4 e animações CSS
 ├── js/
 │   └── main.js           # Lógica JavaScript principal da aplicação
-├── node_modules/         # Dependências do projeto
-├── .gitignore            # Arquivos ignorados pelo Git
 ├── index.html            # Estrutura HTML5 da aplicação
-├── package-lock.json     # Lockfile do NPM
 ├── package.json          # Configurações do projeto e scripts
 └── vite.config.js        # Configuração do Vite
-```
-
-## 🛠️ Como Executar o Projeto Localmente
-
-### Pré-requisitos
-
-Certifique-se de ter o [**Node.js**](https://nodejs.org/) (versão 18 ou superior) instalado em sua máquina.
-
-### Passo a Passo
-
-1. **Instale as dependências:**
-   ```bash
-   npm install
-   ```
-
-2. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Acesse no navegador:**
-   Abra o endereço exibido no terminal (por padrão: `http://localhost:5173/`).
-
-## 🔧 Scripts Disponíveis
-
-| Comando | Descrição |
-| :--- | :--- |
-| `npm run dev` | Inicia o servidor local com Hot Module Replacement (HMR). |
-| `npm run build` | Gera a versão otimizada para produção na pasta `dist`. |
-| `npm run preview` | Executa a versão de produção localmente para testes. |
-
-## 📌 Critérios Atendidos (CP5)
-
-- [x] Estruturação semântica em HTML5.
-- [x] Estilização sem redundâncias utilizando Tailwind CSS v4.
-- [x] Manipulação do DOM e tratamento seguro com JS puro (ES6+).
-- [x] Lógica de validação defensiva e tratamento de inputs do usuário.
-- [x] Responsividade e temas (Light/Dark mode) persistentes
