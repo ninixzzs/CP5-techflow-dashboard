@@ -9,7 +9,7 @@ O **TechFlow** é uma aplicação web interativa de gerenciamento de projetos e 
 ## 👥 Integrantes do Grupo
 
 * **Nicolly Florencio Vilela** — RM: 573392
-* **Brenda Chalco Condori** — RM: 571971
+* **Brenda Pricila Chalco Condori** — RM: 571971
 
 ---
 
