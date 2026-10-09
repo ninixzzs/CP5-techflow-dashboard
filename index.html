@@ -14,8 +14,18 @@
       theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } } }
     }
   </script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme') || 'system';
+        var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body class="bg-slate-50 font-sans text-slate-900 antialiased transition-colors dark:bg-slate-950 dark:text-slate-100">
+<body class="bg-slate-50 font-sans text-slate-900 antialiased transition-colors duration-300 ease-in-out dark:bg-slate-950 dark:text-slate-100">
 
   <!-- Fundo escuro do menu mobile -->
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-slate-900/40 backdrop-blur-sm lg:hidden"></div>
@@ -40,34 +50,60 @@
   <div class="lg:ml-64">
 
     <!-- NAVBAR -->
-    <header class="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/80 px-6 py-3 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/80">
-      <div class="flex items-center gap-3">
-        <button id="btnAbrirSidebar" class="rounded-lg border border-slate-200 p-1.5 lg:hidden dark:border-slate-700">☰</button>
-        <input type="search" placeholder="Pesquisar..." id="busca" class="hidden w-64 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm outline-none sm:block dark:border-slate-700 dark:bg-slate-800" />
+    <header class="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/80 px-6 py-3 backdrop-blur-md transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900/80">
+      <div class="flex items-center gap-4">
+        <button id="btnAbrirSidebar" class="rounded-lg border border-slate-200 p-2 text-slate-600 transition-colors duration-300 hover:bg-slate-100 lg:hidden dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-800">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <div class="relative hidden sm:block">
+          <svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <input type="search" placeholder="Pesquisar..." id="busca" class="w-64 rounded-full border border-slate-200 bg-slate-50 py-1.5 pl-9 pr-4 text-sm outline-none transition-all duration-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-sky-400" />
+        </div>
       </div>
 
-      <div class="flex items-center gap-4">
-        <!-- Tema -->
-        <div class="flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-xs dark:border-slate-700 dark:bg-slate-800">
-          <button data-tema="light" class="btn-tema rounded px-2 py-1">☼</button>
-          <button data-tema="dark" class="btn-tema rounded px-2 py-1">☾</button>
-          <button data-tema="system" class="btn-tema rounded px-2 py-1">⌨</button>
+      <div class="flex items-center gap-5">
+        <!-- Tema Dropdown -->
+        <div class="relative">
+          <button id="btnDropdownTema" class="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition-colors duration-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+            <span class="hidden sm:inline">Tema</span>
+          </button>
+          <ul id="menuTema" class="absolute right-0 mt-2 hidden w-36 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 text-sm shadow-xl transition-colors duration-300 dark:border-slate-700 dark:bg-slate-800">
+            <li>
+              <button data-tema="light" class="btn-tema flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white">
+                <svg class="h-4 w-4 stroke-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                Claro
+              </button>
+            </li>
+            <li>
+              <button data-tema="system" class="btn-tema flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white">
+                <svg class="h-4 w-4 stroke-slate-500 dark:stroke-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                Sistema
+              </button>
+            </li>
+            <li>
+              <button data-tema="dark" class="btn-tema flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white">
+                <svg class="h-4 w-4 stroke-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                Escuro
+              </button>
+            </li>
+          </ul>
         </div>
 
-        <div class="h-4 w-px bg-slate-200 dark:bg-slate-700"></div>
+        <div class="h-5 w-px bg-slate-200 transition-colors duration-300 dark:bg-slate-700"></div>
 
         <!-- Usuário -->
         <div class="relative">
-          <button id="btnUsuario" class="flex items-center gap-2.5 rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 font-semibold text-xs text-white dark:bg-sky-600">N</div>
-            <div class="hidden text-left text-xs md:block">
-              <span class="block font-semibold text-slate-900 dark:text-white">Nicolly</span>
-              <span class="block text-[10px] text-slate-500">Gerente</span>
+          <button id="btnUsuario" class="flex items-center gap-3 rounded-full p-1 pr-3 transition-colors duration-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white transition-colors duration-300 dark:bg-sky-600">N</div>
+            <div class="hidden text-left md:block">
+              <span class="block text-sm font-semibold text-slate-900 transition-colors duration-300 dark:text-white">Nicolly</span>
+              <span class="block text-xs text-slate-500 transition-colors duration-300 dark:text-slate-400">Gerente</span>
             </div>
           </button>
-          <ul id="menuUsuario" class="absolute right-0 mt-2 hidden w-40 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 text-xs shadow-lg dark:border-slate-700 dark:bg-slate-800">
-            <li><a href="#" class="block rounded-lg px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-700">Meu perfil</a></li>
-            <li><a href="#" class="block rounded-lg px-3 py-2 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30">Sair</a></li>
+          <ul id="menuUsuario" class="absolute right-0 mt-2 hidden w-40 overflow-hidden rounded-xl border border-slate-200 bg-white p-1 text-sm shadow-xl transition-colors duration-300 dark:border-slate-700 dark:bg-slate-800">
+            <li><a href="#" class="block rounded-lg px-3 py-2 font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white">Meu perfil</a></li>
+            <li><a href="#" class="block rounded-lg px-3 py-2 font-medium text-rose-600 transition-colors duration-200 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/30">Sair</a></li>
           </ul>
         </div>
       </div>
@@ -223,6 +259,61 @@
   </div>
 
   
+  <!-- TEMA: Claro / Escuro / Sistema (script clássico, independe do main.js) -->
+  <script>
+    (function () {
+      var KEY = 'theme';
+      var root = document.documentElement;
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function saved() {
+        try { var v = localStorage.getItem(KEY); return (v === 'light' || v === 'dark' || v === 'system') ? v : 'system'; }
+        catch (e) { return 'system'; }
+      }
+      function apply(choice) {
+        var dark = choice === 'dark' || (choice === 'system' && mq.matches);
+        root.classList.toggle('dark', dark);
+        root.style.colorScheme = dark ? 'dark' : 'light';
+        document.querySelectorAll('.btn-tema').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.dataset.tema === choice));
+        });
+      }
+      function menu() { return document.getElementById('menuTema'); }
+
+      // Captura na janela: roda ANTES de qualquer handler do main.js nesses elementos
+      window.addEventListener('click', function (e) {
+        var m = menu();
+        if (!m) return;
+
+        var opt = e.target.closest('.btn-tema');
+        if (opt && m.contains(opt)) {
+          e.stopImmediatePropagation(); e.preventDefault();
+          var choice = opt.dataset.tema;
+          try { localStorage.setItem(KEY, choice); } catch (err) {}
+          apply(choice);
+          m.classList.add('hidden');
+          return;
+        }
+
+        if (e.target.closest('#btnDropdownTema')) {
+          e.stopImmediatePropagation(); e.preventDefault();
+          m.classList.toggle('hidden');
+          return;
+        }
+
+        if (!m.contains(e.target)) m.classList.add('hidden'); // clique fora fecha
+      }, true);
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu()) menu().classList.add('hidden');
+      });
+
+      mq.addEventListener('change', function () { if (saved() === 'system') apply('system'); });
+
+      apply(saved());
+    })();
+  </script>
+
   <script type="module" src="/js/app.js"></script>
 </body>
 </html>

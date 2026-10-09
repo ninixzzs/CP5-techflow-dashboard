@@ -2,9 +2,71 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* animação simples do modal */
+/* ================= ANIMAÇÕES ================= */
 @keyframes aparecer {
   from { opacity: 0; transform: scale(.95); }
   to   { opacity: 1; transform: scale(1); }
 }
 .modal-anim { animation: aparecer .2s ease-out; }
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.projeto {
+  animation: slideUpFade 0.4s ease-out backwards;
+}
+.projeto:nth-child(2) { animation-delay: 0.1s; }
+.projeto:nth-child(3) { animation-delay: 0.2s; }
+.projeto:nth-child(4) { animation-delay: 0.3s; }
+
+/* Correção da Lupa de Pesquisa */
+html.tema-sistema .text-slate-400 { color: #9aa0a6 !important; }
+html.tema-sistema input[type="search"] {
+  background-color: #f1f3f4 !important; border-color: #dadce0 !important;
+}
+html.tema-sistema input[type="search"]:focus {
+  background-color: #ffffff !important; border-color: #1a73e8 !important; box-shadow: 0 0 0 1px #1a73e8 !important;
+}
+
+
+/* ================= TEMA SISTEMA E TEMA CLARO ================= */
+html:not(.dark):not(.tema-sistema) body {
+  background-color: #ffffff; /* Google Claro */
+  color: #202124;
+}
+html:not(.dark):not(.tema-sistema) .bg-slate-900 {
+  background-color: #38bdf8 !important; /* Azul Claro no Tema Claro */
+}
+html:not(.dark):not(.tema-sistema) .hover\:bg-slate-800:hover {
+  background-color: #0ea5e9 !important; /* Hover Azul Claro */
+}
+
+html.tema-sistema body {
+  background-color: #f8f9fa !important; /* Google Cinza Claro (Drive/Docs) */
+  color: #202124 !important;
+}
+html.tema-sistema header,
+html.tema-sistema aside,
+html.tema-sistema .bg-white {
+  background-color: #ffffff !important; /* Cards brancos */
+}
+html.tema-sistema .border-slate-200 {
+  border-color: #dadce0 !important; /* Google Border */
+}
+html.tema-sistema .text-slate-900 {
+  color: #202124 !important; /* Google Texto Principal */
+}
+html.tema-sistema .text-slate-500 {
+  color: #5f6368 !important; /* Google Texto Secundário */
+}
+html.tema-sistema .bg-slate-900 {
+  background-color: #1e3a8a !important; /* Azul Escuro no Tema Sistema */
+}
+html.tema-sistema .bg-sky-600 {
+  background-color: #1e3a8a !important; /* Azul Escuro no Tema Sistema */
+}
+html.tema-sistema .stroke-sky-400,
+html.tema-sistema .stroke-amber-500 {
+  stroke: #5f6368 !important; /* Ícones em cinza Google */
+}
