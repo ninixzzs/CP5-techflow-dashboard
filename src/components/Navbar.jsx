@@ -29,17 +29,27 @@ export default function Navbar() {
           {aberto ? '✕' : '☰'}
         </button>
 
-        <ul className="hidden gap-2 md:flex">
+        <ul className="hidden items-center gap-3 md:flex">
           {links.map((l) => (
             <li key={l.to}>
               <NavLink to={l.to} className={estilo}>{l.label}</NavLink>
             </li>
           ))}
+          <li>
+            <a
+              href="/restaurante-japonescp5.zip"
+              download="restaurante-japonescp5.zip"
+              className="inline-flex items-center gap-1.5 rounded-md bg-gray-800 border border-gray-700 px-3 py-2 text-sm font-medium text-gray-200 transition hover:bg-gray-700 hover:text-white"
+              title="Baixar projeto atualizado com commits"
+            >
+              📥 Baixar Zip
+            </a>
+          </li>
         </ul>
       </nav>
 
       {aberto && (
-        <ul className="flex flex-col gap-1 px-4 pb-4 md:hidden">
+        <ul className="flex flex-col gap-2 px-4 pb-4 md:hidden">
           {links.map((l) => (
             <li key={l.to}>
               <NavLink to={l.to} className={estilo} onClick={() => setAberto(false)}>
@@ -47,6 +57,15 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+          <li>
+            <a
+              href="/restaurante-japonescp5.zip"
+              download="restaurante-japonescp5.zip"
+              className="block rounded-md bg-gray-800 border border-gray-700 px-3 py-2 text-center text-sm font-medium text-gray-200 transition hover:bg-gray-700 hover:text-white"
+            >
+              📥 Baixar Projeto (.zip)
+            </a>
+          </li>
         </ul>
       )}
     </header>
