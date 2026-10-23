@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./Card.jsx";
 
 const pratos = [
@@ -11,14 +12,38 @@ const pratos = [
   { id: 8, nome: "Dorayaki", descricao: "Panqueca recheada com doce de feijão.", preco: 16.9, emoji: "🥞", categoria: "Sobremesas" },
 ];
 
+const categorias = ["Todos", "Sushis", "Sashimis", "Quentes", "Sobremesas"];
+
 export default function Cardapio() {
+  const [filtro, setFiltro] = useState("Todos");
+
+  const pratosFiltrados =
+    filtro === "Todos" ? pratos : pratos.filter((p) => p.categoria === filtro);
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
       <h1 className="mb-8 text-center text-4xl font-bold text-gray-900">
         Cardápio
       </h1>
+
+      <div className="mb-8 flex flex-wrap justify-center gap-2">
+        {categorias.map((c) => (
+          <button
+            key={c}
+            onClick={() => setFiltro(c)}
+            className={`rounded-full px-5 py-2 text-sm font-medium transition ${
+              filtro === c
+                ? "bg-red-700 text-white"
+                : "bg-white text-gray-700 shadow hover:bg-red-50"
+            }`}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {pratos.map((p) => (
+        {pratosFiltrados.map((p) => (
           <Card
             key={p.id}
             nome={p.nome}
