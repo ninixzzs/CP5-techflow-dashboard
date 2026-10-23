@@ -1,1 +1,16 @@
 @import "tailwindcss";
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+/* Pausa o movimento quando o utilizador passa o rato por cima de qualquer prato */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

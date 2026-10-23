@@ -56,13 +56,13 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
               <Link
                 to="/cardapio"
-                className="rounded-lg bg-red-700 px-7 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-red-800"
+                className="rounded-lg bg-red-700 px-7 py-3 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-red-800 hover:scale-105"
               >
                 Ver Cardápio
               </Link>
               <a
                 href="#destaques"
-                className="rounded-lg border border-gray-700 bg-gray-900 px-7 py-3 text-base font-medium text-gray-200 transition hover:bg-gray-800"
+                className="rounded-lg border border-gray-700 bg-gray-900 px-7 py-3 text-base font-medium text-gray-200 transition-all duration-300 hover:bg-gray-800 hover:border-red-500/50"
               >
                 Pratos Populares
               </a>
@@ -70,11 +70,11 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center">
-            <div className="relative overflow-hidden rounded-2xl border-4 border-gray-800 shadow-2xl transition hover:scale-[1.02]">
+            <div className="relative overflow-hidden rounded-2xl border-4 border-gray-800 shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
               <img
                 src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=600&q=80"
                 alt="Prato tradicional Sakura Sushi"
-                className="h-auto max-h-96 w-full object-cover"
+                className="h-auto max-h-96 w-full object-cover transition-transform duration-700 hover:scale-110"
               />
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {diferenciais.map((item) => (
-              <div key={item.titulo} className="rounded-xl bg-gray-950 p-6 text-center border border-gray-800 transition hover:border-red-700/50">
+              <div key={item.titulo} className="rounded-xl bg-gray-950 p-6 text-center border border-gray-800 transition-all duration-300 hover:-translate-y-1 hover:border-red-700/50 hover:shadow-lg hover:shadow-red-900/10">
                 <div className="mb-3 text-4xl">{item.icon}</div>
                 <h3 className="mb-1 text-base font-bold text-white">{item.titulo}</h3>
                 <p className="text-sm text-gray-400">{item.descricao}</p>
@@ -103,16 +103,19 @@ export default function Home() {
           <p className="mt-2 text-gray-400">Os queridinhos dos nossos clientes, preparados artesanalmente.</p>
         </div>
 
+        {/* Grelha de Cards com transição suave */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {pratosDestaque.map((p) => (
-            <Card key={p.id} nome={p.nome} descricao={p.descricao} preco={p.preco} foto={p.foto} />
+            <div key={p.id} className="transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-red-900/20 rounded-xl overflow-hidden">
+              <Card nome={p.nome} descricao={p.descricao} preco={p.preco} foto={p.foto} />
+            </div>
           ))}
         </div>
 
         <div className="mt-10 text-center">
           <Link
             to="/cardapio"
-            className="inline-flex items-center gap-2 rounded-lg bg-red-700 px-6 py-3 font-semibold text-white transition hover:bg-red-800"
+            className="inline-flex items-center gap-2 rounded-lg bg-red-700 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:scale-105 shadow-lg"
           >
             Ver Todo o Cardápio
             <span>→</span>
@@ -130,7 +133,7 @@ export default function Home() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {avaliacoes.map((av) => (
-              <div key={av.id} className="rounded-xl bg-gray-950 p-6 border border-gray-800 shadow-sm">
+              <div key={av.id} className="rounded-xl bg-gray-950 p-6 border border-gray-800 shadow-sm transition-all duration-300 hover:border-gray-700 hover:-translate-y-1">
                 <div className="mb-2 text-sm">{av.estrelas}</div>
                 <p className="text-sm text-gray-300 italic">“{av.comentario}”</p>
                 <p className="mt-4 text-xs font-bold text-red-400">— {av.nome}</p>
