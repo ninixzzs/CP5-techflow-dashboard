@@ -17,8 +17,16 @@ export default function Navbar() {
   return (
     <header className="bg-gray-900 shadow-lg">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <NavLink to="/" className="text-xl font-bold text-white">
-          🍣 Sakura Sushi
+        {/* Logótipo com o link direto da imagem do gatinho */}
+        <NavLink to="/" className="flex items-center gap-3 transition hover:opacity-90">
+          <img 
+            src="https://img.freepik.com/vetores-premium/gato-da-sorte-design-plano-arte-vetorial-icone-do-gato-da-sorte-chines_692702-12790.jpg?w=1060" 
+            alt="Sakura Sushi Logo" 
+            className="h-10 w-10 object-cover rounded-full border border-red-700/50 shadow" 
+          />
+          <span className="text-xl font-bold tracking-wide text-white">
+            Sakura <span className="text-red-500">Sushi</span>
+          </span>
         </NavLink>
 
         <button
@@ -29,25 +37,17 @@ export default function Navbar() {
           {aberto ? '✕' : '☰'}
         </button>
 
+        {/* Links principais (Desktop) */}
         <ul className="hidden items-center gap-3 md:flex">
           {links.map((l) => (
             <li key={l.to}>
               <NavLink to={l.to} className={estilo}>{l.label}</NavLink>
             </li>
           ))}
-          <li>
-            <a
-              href="/restaurante-japonescp5.zip"
-              download="restaurante-japonescp5.zip"
-              className="inline-flex items-center gap-1.5 rounded-md bg-gray-800 border border-gray-700 px-3 py-2 text-sm font-medium text-gray-200 transition hover:bg-gray-700 hover:text-white"
-              title="Baixar projeto atualizado com commits"
-            >
-              📥 Baixar Zip
-            </a>
-          </li>
         </ul>
       </nav>
 
+      {/* Menu mobile */}
       {aberto && (
         <ul className="flex flex-col gap-2 px-4 pb-4 md:hidden">
           {links.map((l) => (
@@ -57,15 +57,6 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          <li>
-            <a
-              href="/restaurante-japonescp5.zip"
-              download="restaurante-japonescp5.zip"
-              className="block rounded-md bg-gray-800 border border-gray-700 px-3 py-2 text-center text-sm font-medium text-gray-200 transition hover:bg-gray-700 hover:text-white"
-            >
-              📥 Baixar Projeto (.zip)
-            </a>
-          </li>
         </ul>
       )}
     </header>

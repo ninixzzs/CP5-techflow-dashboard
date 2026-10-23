@@ -1,21 +1,14 @@
-export default function Card({ nome, descricao, preco, emoji = "🍣" }) {
-  const precoFormatado = preco.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
+export default function Card({ nome, descricao, preco, foto }) {
   return (
-    <article className="overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
-      <div className="flex h-40 items-center justify-center bg-red-50 text-6xl">
-        {emoji}
+    <div className="rounded-2xl bg-gray-900 p-4 border border-gray-800 shadow-xl flex flex-col justify-between overflow-hidden">
+      <div>
+        <img src={foto} alt={nome} className="mb-4 h-40 w-full object-cover rounded-xl" />
+        <h3 className="text-xl font-bold text-white mb-2">{nome}</h3>
+        <p className="text-gray-400 text-sm mb-4">{descricao}</p>
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-gray-900">{nome}</h3>
-        <p className="mt-1 text-sm text-gray-600">{descricao}</p>
-        <span className="mt-4 block text-lg font-bold text-red-700">
-          {precoFormatado}
-        </span>
+      <div className="text-red-500 font-bold text-lg">
+        R$ {preco.toFixed(2)}
       </div>
-    </article>
+    </div>
   );
 }
