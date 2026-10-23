@@ -1,0 +1,6 @@
+RMs e Nomes:
+RM573392 -Nicolly florencio vilela (Tech Lead)
+RM00000 - Nome do Dev 1
+RM00000 - Nome do Dev 2
+Repositório:
+https://github.com/restaurante-japonescp5/restaurante-japonescp5.git
