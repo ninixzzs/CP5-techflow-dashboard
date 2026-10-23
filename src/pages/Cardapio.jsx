@@ -26,6 +26,11 @@ export default function Cardapio() {
         Cardápio
       </h1>
 
+      <p className="mb-6 text-center text-gray-500">
+        {pratosFiltrados.length}{" "}
+        {pratosFiltrados.length === 1 ? "prato encontrado" : "pratos encontrados"}
+      </p>
+
       <div className="mb-8 flex flex-wrap justify-center gap-2">
         {categorias.map((c) => (
           <button
@@ -53,6 +58,12 @@ export default function Cardapio() {
           />
         ))}
       </div>
+
+      {pratosFiltrados.length === 0 && (
+        <p className="mt-8 text-center text-gray-500">
+          Nenhum prato nesta categoria.
+        </p>
+      )}
     </section>
   );
 }
