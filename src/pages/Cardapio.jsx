@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "./Card.jsx";
+import Card from "../components/Card.jsx";
 
 const pratos = [
   { id: 1, nome: "Sushi Salmão (8un)", descricao: "Nigiri de salmão fresco.", preco: 32.9, emoji: "🍣", categoria: "Sushis" },
