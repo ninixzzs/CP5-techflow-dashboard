@@ -18,6 +18,10 @@ export default function Footer() {
           <p className="text-sm">(11) 99999-9999</p>
         </div>
       </div>
+      <p className="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} Sakura Sushi. Todos os direitos 
+reservados.
+      </p>
     </footer>
   )
 }
